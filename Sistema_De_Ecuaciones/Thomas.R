@@ -1,4 +1,10 @@
 
+# Metodod de Thomas: Resuelve el sistema Ax = b
+#    Entrada:
+#       mat: Matriz tridiagonal
+        # d: vector
+    # Salida:
+    #     x: vector solución
 thomas <- function(mat, d){ # nolint
     m <- nrow(mat)
     cba <- get_tridiagonal(mat)
@@ -28,18 +34,22 @@ thomas <- function(mat, d){ # nolint
     denom <- b_vec[m] - p[m - 1] * a_vec[m - 1]
     q[m] <- num / denom
 
-    print(p)
-    print(q)
-
     # #Valor final de X
     x[m] <- q[m]
     #El resto de valores de X
     for (j in seq(m - 1, 0, by = -1)) {
         x[j] <- q[j] - p[j] * x[j + 1]
     }
-    print(x)
+    return(x)
 }
 
+# Retorna una lista cba con 3 vectores correspondientes
+#  a la diagonal, subdiagonal y supradiagonal
+#     Entrada:
+#         mat: Matriz tridiagonal
+#     Salida:
+#         cba: Lista con 
+#         [diagonal superior, diagonal principal, diagonal inferior]
 get_tridiagonal <- function(mat) {
     m <- nrow(mat)
 
@@ -59,15 +69,12 @@ get_tridiagonal <- function(mat) {
     return(cba)
     }
 
-# r1 <- c(5, 1, 0, 0)
-# r2 <- c(1, 5, 1, 0)
-# r3 <- c(0, 1, 5, 1)
-# r4 <- c(0, 0, 1, 5)
+r1 <- c(5, 1, 0, 0)
+r2 <- c(1, 5, 1, 0)
+r3 <- c(0, 1, 5, 1)
+r4 <- c(0, 0, 1, 5)
 
-r1 <- c(1, 5, 0)
-r2 <- c(6, 2, 7)
-r3 <- c(0, 8, 3)
-# mat <- rbind(r1, rbind(r2, rbind(r3, r4))) #nolint
-mat <- rbind(r1, rbind(r2, r3)) #nolint
-d <- c(6, 7, 6)
-thomas(mat, d)
+mat <- rbind(r1, rbind(r2, rbind(r3, r4))) #nolint
+d <- c(-12, -14, -14, -12)
+x <- thomas(mat, d)
+print(x)

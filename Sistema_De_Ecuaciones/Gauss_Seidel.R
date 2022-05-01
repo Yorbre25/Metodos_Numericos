@@ -1,3 +1,14 @@
+# Metodo Gauss Seidel: Resuelve el sistema Ax = b
+#     Entrada:
+#         mat: Matriz
+#         b: vector
+#         x0: vector con valores iniciales
+#         tol: error mínimo del resultado
+#         iterMax: iteraciones máximas
+    # Salida:
+    #     xk: Vector solución
+    #     i: numero de iteraciones
+    #     error: error del resultado
 gauss_seidel <- function(mat, b, x0, tol, itermax){ # nolint
     ldu <- getLDU(mat)
     lower <- ldu[[1]]
@@ -16,11 +27,15 @@ gauss_seidel <- function(mat, b, x0, tol, itermax){ # nolint
             break
         }
     }
-    print(xk)
-    print(error)
-    print(i)
+    resultado <- list(xk, error, i)
+    return(resultado)
 }
 
+# Retorna las matrices U, D y L. Que cumplen mat = U + D + L
+# Entrada:
+#     mat: matriz
+# Salida:
+#     ldu: [inferior, diagonal, superior]
 getLDU <- function(mat) { #nolint
     d <- diag(mat)
     D <- diag(d) #nolint
@@ -43,4 +58,10 @@ b <- c(6, 7, 6)
 
 tol <- 10^-10
 itermax <- 1000
-gauss_seidel(mat_A, b, x0, tol, itermax)
+resultados <- gauss_seidel(mat_A, b, x0, tol, itermax)
+xk <- resultados[[1]]
+i <- resultados[[2]]
+error <- resultados[[3]]
+print(xk)
+print(i)
+print(error)

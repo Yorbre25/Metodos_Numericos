@@ -12,7 +12,7 @@ jacobi <- function(matriz_a, b, x0, tol, itermax) {
     for (i in seq(1, itermax, by = 1)) {
         xk <- m %*% xk + z
         error <- norm(matriz_a %*% xk - b, type = "2")
-        if(error < tol) {
+        if (error < tol) {
             break
         }
     }

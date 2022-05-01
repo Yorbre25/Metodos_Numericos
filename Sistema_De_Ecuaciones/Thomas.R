@@ -40,15 +40,23 @@ thomas <- function(mat_A, d){ # nolint
 
 get_diagonal <- function(mat, offset) {
     m <- nrow(mat)
-    n <- ncol(mat)
-    
+    # n <- ncol(mat)
+    d <- c()
+    # for (i in seq(1, m, by = 1)) {
+    #     d[i] <- mat[i, i + offset]
+    # }
+    for (i in seq(1, m - 1, by = 1)) {
+        d[i] <- mat[i, i]
+    }
+    print(d)
     }
 
-r1 <- c(5, 1, 0, 0)
+r1 <- c(5, 1, 0, 0) 
 r2 <- c(1, 5, 1, 0)
 r3 <- c(0, 1, 5, 1)
 r4 <- c(0, 0, 1, 5)
 mat_A <- rbind(r1, rbind(r2, rbind(r3, r4))) #nolint
 d <- c(-12, -14, -14, -12)
+get_diagonal(mat_A, -1)
 # thomas(mat_A, d)
 

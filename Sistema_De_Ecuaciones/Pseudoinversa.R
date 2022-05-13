@@ -9,15 +9,15 @@
     #     i: numero de iteraciones
     #     error: error del resultado
 pseudoinversa <- function(A, b, tol, itermax){ # nolint
-    x <- (1/norm(A)**2)*t(A) 
-    xk <- x*b
+    x <- (1/norm(A, type = "2")**2)*t(A) 
+    xk <- x%*%b
     I<-diag(nrow(A))
 
     for (i in seq(1, itermax, by = 1)) {
-        x <- x*(2*I-A*x)
-        xk_n <- x*b
+        x <- x%*%(2*I-A%*%x)
+        xk_n <- x%*%b
 
-        error <- norm(xk_n-xk)/ norm(xk_n)
+        error <- norm(xk_n-xk, type = "2")/ norm(xk_n, type = "2")
         xk <- xk_n
         if (error < tol) {
             break
@@ -46,8 +46,8 @@ b = as.vector(matrix(
 
 resultados <- pseudoinversa(A, b, tol, itermax)
 xk <- resultados[[1]]
-i <- resultados[[2]]
-error <- resultados[[3]]
-print(1/norm(A)**2)
+i <- resultados[[3]]
+error <- resultados[[2]]
+print(xk)
 print(i)
 print(error)

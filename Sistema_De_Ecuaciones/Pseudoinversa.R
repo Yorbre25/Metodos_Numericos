@@ -1,8 +1,8 @@
 # Metodo de la Pseudoinversa: Resuelve el sistema Ax = b
 #     Entrada:
-#         mat: Matriz
+#         A: Matriz
 #         b: vector
-#         tol: error mínimo del resultado
+#         tol: error maximo del resultado
 #         iterMax: iteraciones máximas
     # Salida:
     #     xk: Vector solución

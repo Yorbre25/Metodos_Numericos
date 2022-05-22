@@ -1,13 +1,13 @@
 biseccion <- function(a,b,tol,iterMax) {
   f1 <- function(x) {
-    a <-exp(x)-2*x-10
+    a <-  -2*x +exp(x)  -10
     return(a)
   }
 if (f1(b) * f1(a)<0 ) {
   
 	for (k in 1:iterMax) {
 		x<-(a+b)/2
-		if (f1(b) > f1(a)) {
+		if (f1(a) * f1(x)<0) {
 	 	 b<-x
 		} else {
  		 a<-x
@@ -24,6 +24,7 @@ if (f1(b) * f1(a)<0 ) {
 ele_sal<- list(x, error,k)
   return (ele_sal)
 }
+
 
 # solb<-biseccion(2,3,1e-6,1000)
 # el_error<-solb[2]
